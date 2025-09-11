@@ -1,0 +1,59 @@
+# =========================
+# Node & Electron Defaults
+# =========================
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Electron Builder outputs
+# =========================
+dist/
+out/
+build/
+
+# Binários gerados (não versionar)
+*.exe
+*.msi
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+*.snap
+
+# =========================
+# Logs e caches
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# OS Specific
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Editor settings
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Env & Secrets
+# =========================
+.env
+.env.local
+.env.*.local
+
+# =========================
+# Auto Updater (electron-updater)
+# =========================
+# Arquivos de release gerados automaticamente
+latest.yml
+latest-*.yml

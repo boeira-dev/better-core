@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Soundboard</title>
+    <style>
+      html,
+      body {
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 14px;
+        background: #333;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+
+      button.playing {
+        background: #007acc;
+      }
+
+      button:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/kassino-can-i-get-over.mp3', 'kassino', this)"
+      >
+        Kassino
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/spongebob-fail.mp3', 'sponge', this)"
+      >
+        Fail
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/app-12.mp3', 'aplausos', this)"
+      >
+        Aplausos
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/europe_-_the_final_countdown_chorus-1.mp3', 'Europe', this)"
+      >
+        Europe
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/faustao-errou_3.mp3', 'Errou', this)"
+      >
+        Errou
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/vegeta-o-miseravel-e-um-genio.mp3', 'Genio', this)"
+      >
+        Genio
+      </button>
+      <button
+        onclick="togglePlay('https://www.myinstants.com/media/sounds/naruto-sad-music-instant.mp3', 'Sad', this)"
+      >
+        Sad
+      </button>
+    </div>
+
+    <script>
+      const sounds = {};
+      let currentPlayingId = null;
+
+      function togglePlay(url, id, button) {
+        // Criar áudio se ainda não existir
+        if (!sounds[id]) {
+          sounds[id] = new Audio(url);
+          sounds[id].addEventListener("ended", () => {
+            button.classList.remove("playing");
+            if (currentPlayingId === id) {
+              currentPlayingId = null;
+            }
+          });
+        }
+
+        const audio = sounds[id];
+
+        // Se já está tocando, parar
+        if (!audio.paused && currentPlayingId === id) {
+          audio.pause();
+          audio.currentTime = 0;
+          button.classList.remove("playing");
+          currentPlayingId = null;
+        } else {
+          // Pausar qualquer som anterior
+          if (currentPlayingId && sounds[currentPlayingId]) {
+            sounds[currentPlayingId].pause();
+            sounds[currentPlayingId].currentTime = 0;
+            document
+              .querySelectorAll("button")
+              .forEach((btn) => btn.classList.remove("playing"));
+          }
+
+          // Tocar som atual
+          audio.play();
+          button.classList.add("playing");
+          currentPlayingId = id;
+        }
+      }
+    </script>
+  </body>
+</html>
