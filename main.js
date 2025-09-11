@@ -13,7 +13,10 @@ let currentMode = "codigo2"; // começa no modo 1
 let views = [];
 let view4Visible = false;
 let view5Visible = false;
+let view6Visible = false;
+//COMECA AQUI A PALHACADA
 
+//AQUI termina
 app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
 
 app.whenReady().then(() => {
@@ -44,8 +47,8 @@ app.whenReady().then(() => {
       win.removeBrowserView(view4);
     }
   });
-  globalShortcut.register("CommandOrControl+Alt+D", () => {
-    const view5 = views.find((v) => v.role === "dashboard");
+  globalShortcut.register("F1", () => {
+    const view5 = views.find((v) => v.role === "chat");
     if (!view5) return;
 
     view5Visible = !view5Visible;
@@ -53,6 +56,17 @@ app.whenReady().then(() => {
       win.addBrowserView(view5);
     } else {
       win.removeBrowserView(view5);
+    }
+  });
+  globalShortcut.register("F2", () => {
+    const view6 = views.find((v) => v.role === "admin");
+    if (!view6) return;
+
+    view6Visible = !view6Visible;
+    if (view6Visible) {
+      win.addBrowserView(view6);
+    } else {
+      win.removeBrowserView(view6);
     }
   });
 
@@ -178,7 +192,7 @@ function initCodigo1() {
   view4.webContents.loadFile(path.join(__dirname, "soundboard.html"));
   views.push(Object.assign(view4, { role: "soundboard" }));
 
-  //Nova View Com a Dashboard
+  //Nova View Com a ChatGPT
   const view5 = new BrowserView({
     webPreferences: {
       contextIsolation: true,
@@ -186,10 +200,18 @@ function initCodigo1() {
   });
   view5.setBounds({ x: 0, y: 0, width: restanteWidth, height: topHeight });
   view5.setAutoResize({ width: true });
-  view5.webContents.loadURL("https://agne.ddns.net:31114/metricas/dashboards");
-  views.push(Object.assign(view5, { role: "dashboard" }));
+  view5.webContents.loadURL("https://chatgpt.com/c/");
+  views.push(Object.assign(view5, { role: "chat" }));
   //Fim da nova view
-
+  const view6 = new BrowserView({
+    webPreferences: {
+      contextIsolation: true,
+    },
+  });
+  view6.setBounds({ x: 0, y: 0, width: restanteWidth, height: topHeight });
+  view6.setAutoResize({ width: true });
+  view6.webContents.loadURL("https://agne.ddns.net:31106/login");
+  views.push(Object.assign(view6, { role: "admin" }));
   // Intercepta clique em links da view1
   view1.webContents.on("did-finish-load", () => {
     view1.webContents.executeJavaScript(`
@@ -372,7 +394,7 @@ function initCodigo2() {
   view4.setAutoResize({});
   view4.webContents.loadFile(path.join(__dirname, "soundboard.html"));
   views.push(Object.assign(view4, { role: "soundboard" }));
-  //Nova View Com a Dashboard
+  //Nova View Com a ChatGPT
   const view5 = new BrowserView({
     webPreferences: {
       contextIsolation: true,
@@ -380,9 +402,18 @@ function initCodigo2() {
   });
   view5.setBounds({ x: 0, y: 0, width: restanteWidth, height: topHeight });
   view5.setAutoResize({ width: true });
-  view5.webContents.loadURL("https://agne.ddns.net:31114/metricas/dashboards");
-  views.push(Object.assign(view5, { role: "dashboard" }));
+  view5.webContents.loadURL("https://chatgpt.com/c/");
+  views.push(Object.assign(view5, { role: "chat" }));
   //Fim da nova view
+  const view6 = new BrowserView({
+    webPreferences: {
+      contextIsolation: true,
+    },
+  });
+  view6.setBounds({ x: 0, y: 0, width: restanteWidth, height: topHeight });
+  view6.setAutoResize({ width: true });
+  view6.webContents.loadURL("https://agne.ddns.net:31106/login");
+  views.push(Object.assign(view6, { role: "admin" }));
 }
 
 // ===================== EVENTOS IPC =====================

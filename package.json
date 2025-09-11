@@ -1,6 +1,6 @@
 {
   "name": "better-core",
-  "version": "2.5.1",
+  "version": "3.0.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
