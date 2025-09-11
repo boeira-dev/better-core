@@ -7,7 +7,7 @@
     "build": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^30.0.0",
+    "electron": "^38.1.0",
     "electron-builder": "^26.0.12"
   },
   "build": {
@@ -37,5 +37,16 @@
   },
   "dependencies": {
     "electron-updater": "^6.6.2"
-  }
+  },
+  "description": "\"# better-core\" \r \"# better-core\"",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteinMarcelo/better-core.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteinMarcelo/better-core/issues"
+  },
+  "homepage": "https://github.com/SteinMarcelo/better-core#readme"
 }
