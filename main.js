@@ -58,7 +58,7 @@ app.whenReady().then(() => {
       win.removeBrowserView(view5);
     }
   });
-  globalShortcut.register("F2", () => {
+  globalShortcut.register("F3", () => {
     const view6 = views.find((v) => v.role === "admin");
     if (!view6) return;
 
